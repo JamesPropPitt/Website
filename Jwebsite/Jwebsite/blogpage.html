@@ -10,6 +10,12 @@
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
+
+	
+<head>
+  <link rel="stylesheet" type="text/css" href="default.css">
+</head>
+
 <body class="w3-light-grey">
 
 
@@ -21,6 +27,11 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <p>BSc Programmer</p>
 </header>
 
+<div class = "content">
+		<a href="homepage.html">
+		<button class="buttonH" style = "vertical-align:middle" <a href"homepage.html"><span>About me</span></button>
+		</a>
+</div>	
 <div class="w3-row">
 
 
@@ -32,7 +43,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <h3><b>Product owner</b></h3>
       <h5>Optimisation<span class="w3-opacity"> March 5, 2019</span></h5>
     </div>
-
+	
     <div class="w3-container">
       <p>The assignment given to me inherently requires that I optimise the website sufficiently and I will be documenting the processes that were involved with this. The tools which have been used
 	  and/or will be used are programs such as Atom - the interpreter to write the code for the new system. NodeJS - the JavaScript variant that execute and display the website without the need of hosting it on a server among other supportive values that accompanies Node.
@@ -43,16 +54,72 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
 
 <div class="w3-card-4 w3-margin w3-white">
-  <img src="images/pO.png" alt="Product Owner" style="width:100%">
+  <img src="images/Optimisation.png" alt="Product Owner" style="width:100%">
     <div class="w3-container">
       <h3><b>Product owner</b></h3>
-      <h5>Peer review system<span class="w3-opacity"> March 2, 2019</span></h5>
+      <h5>Peer review system<span class="w3-opacity"> March 2nd, 2019</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>This is the very first thing I worked on when creating the new PO system, I figured I would work on the login page and build a site around that. This is due to the fact that the fundamental feature
+	  of a Product Owner system is that someone can log-in and perform actions as the individual. This code originally involved a for loop which went through each account and checked the username against each password, 
+	  this meant in the current state of the log-in system it would iterate through 9 different checks. This was unnecessary and an initial oversight. The new code only checks the username against the password relative to the 
+	  username number in the array. In future, this may become obsolete when incorporating Databases. For now, this is a more optimal way to test the log in system and manage larger numbers of test accounts.</p>
+      <div class="w3-row">
+      </div>
+    </div>
+  </div>
+  
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="images/product-owner-2.png" alt="Product Owner" style="width:50%">
+	<!-- source: https://academy.groupeonepoint.com/wp-content/uploads/2016/12/product-owner-2.png -->
+    <div class="w3-container">
+      <h3><b>The Product Owner system</b></h3>
+      <h5>Introduction<span class="w3-opacity"> February 20th, 2019</span></h5>
     </div>
 
     <div class="w3-container">
       <p>I have been tasked with revamping the current Product Owner system, this was a task delegated to me as part of the Agency team. The current peer review system is written in PHP and
 	  hosted in such a way that makes it very difficult for modular additions to be added. Therefore my task is to translate the code to a more modern platform (NodeJs was chosen for this) and allow for future
 	  additions to be made to the system easily by structuring the system in a modular fashion.</p>
+      <div class="w3-row">
+      </div>
+    </div>
+  </div>
+  
+  
+    <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+  <img src="images/bannerimage.jpg" alt="Autism" style="width:100%">
+    <div class="w3-container">
+      <h3><b>An Autism Simulation</b></h3>
+      <h5>Bit of optimisation<span class="w3-opacity"> February 11th, 2018</span></h5>
+    </div>
+
+	
+	
+    <div class="w3-container">
+      <p>The project I am optimising is the prototype I am developing for my dissertation- an autism simulation through a text adventure.
+		 This involves defining a number of emotion states which are required to be randomised everytime the player makes a decision.
+		 However I realised that I didn’t need to run through the cycle to set moods each time and could instead run the mood function when the program opens and assign values to all future decisions.
+		 The premise of the game is that the player is having a conversation with an AI who has volatile emotions and can react strangely to prompts which might not logically seem as though they should elicit such a reaction.
+		 This was done by selecting a dialogue option and then having the AI change their behaviour to a random emotion.
+		 However, sometimes the AI would trip up on itself and go into an infinite loop of changing emotions, similar to when Jim Carey first don the mask in ‘The Mask’.
+		 This code is responsible for selecting the emotion.</p>
+		 
+		 <img src="images/SS1.png" alt="Example of unoptimised" style="width:50%">
+		 
+		<p>This was the code which fired everytime a button was pressed, this was cumbersome as the program was required to generate a random number everytime a button was pressed.</p>
+		
+		<img src="images/SS2.png" alt="Example of unoptimised" style="width:50%">
+		
+		With this new function in the starter phase of the code “changeEmotionAll”, this runs through the code and assigns an emotion to every decision taken by the player.
+		This cuts down the possible number of emotions from infinite to 28.
+		
+		<img src="images/SS4.png" alt="Example of unoptimised" style="width:50%">
+		
+		This is a relatively simple matter of optimisation, but still one I put my project through.
+		Updates to come.
       <div class="w3-row">
       </div>
     </div>
@@ -73,13 +140,11 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
   
-
-  <!-- Blog entry -->
   <div class="w3-card-4 w3-margin w3-white">
   <img src="images/bannerimage.jpg" alt="Autism" style="width:100%">
     <div class="w3-container">
       <h3><b>An Autism Simulation</b></h3>
-      <h5>Project: Autimulation<span class="w3-opacity"> October 2, 2018</span></h5>
+      <h5>Project: Autimulation<span class="w3-opacity"> October 2nd, 2018</span></h5>
     </div>
 
     <div class="w3-container">
@@ -91,15 +156,10 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
 
-
 </div>
 <div class="w3-col l4">
 
   
-	<div class="content">
-	<a href="homepage.html">
-  <button id="myBtn" <a href"homepage.html">About me</button>  
-	</div>
   <div class="w3-card w3-margin">
     <div class="w3-container w3-padding">
      <i>This Website was made using assets from W3</i>
