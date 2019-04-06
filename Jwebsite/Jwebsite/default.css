@@ -1,8 +1,5 @@
-
-
-
 body {
-	background: #6E6E6E;
+	background-color: lightgray;
 	text-align: justify;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: small;
@@ -205,19 +202,7 @@ font-size: 44px;
   padding: 20px;
 }
 
-#myBtn {
-  width: 200px;
-  height: 75px;
-  font-size: 30px;
-  padding: 10px;
-  border: none;
-  background: #333333;
-  color: #fff;
-position: absolute;
-  	left: 80%;
-  	top: 250px;
-  
-}
+
 
 #myBtn:hover {
   background: #ddd;
@@ -229,19 +214,6 @@ font-style: oswald;
 font-size: 88px;
 }
 
-#myBtn2 {
-  width: 200px;
-  height: 75px;
-  font-size: 30px;
-  padding: 10px;
-  border: none;
-  background: #333333;
-  color: #fff;
-position: absolute;
-  	left: 80%;
-  	top: 150px;
-  
-}
 
 #myBtn2:hover {
   background: #ddd;
@@ -375,4 +347,38 @@ position: absolute;
 .buttonW:hover span:after {
   opacity: 1;
   right: 0;
+}
+#contactlink{
+    background-color:orange;
+}
+#blogButton {
+    width: 200px;
+    height: 45px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    background-color: orange;
+    color: black;
+    position: absolute;
+    left: 80%;
+    top: 250px;
+    text-decoration: none;
+    text-align: center
+}
+
+#aboutButton {
+    width: 200px;
+    height: 45px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    background-color: orange;
+    color: black;
+    position: absolute;
+    left: 80%;
+    top: 150px;
+    text-decoration: none;
+    text-align: center
 }
