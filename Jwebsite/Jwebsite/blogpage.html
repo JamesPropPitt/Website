@@ -11,6 +11,7 @@
     <!--The above link is very IMPORTANT without it the w3 style do not work-->
 </head>
 <body>
+<div class="container">
     <nav>
         <div class="w3-top">
             <div class="w3-bar w3-lightgrey w3-large w3-right">
@@ -20,16 +21,79 @@
                 <a href="mailto:james@thepittfamily,org" class="w3-btn w3-orange w3-right">Contact James Pitt</a>
             </div>
         </div>
-    </nav>    <div class="w3-content" style="max-width:1920px; margin-bottom: 100px">
+    </nav>
+	
+	
+		<div class="w3-content" style="max-width:1920px; margin-bottom: 100px">
         <header class="w3-container w3-center w3-padding-32">
             <h1><b>James Pitt</b></h1>
             <p>BSc. Hons. Programmer</p>
         </header>
+		</div>
 
-
+	<div class="w3-col l8 s12">
         <div class="w3-row">
-
 				<div class="w3-card-4 w3-margin w3-white">
+				<div id="myBtnContainer">
+				  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+				  <button class="btn" onclick="filterSelection('Optimisation')"> Optimisation</button>
+				  <button class="btn" onclick="filterSelection('Portability')"> Portability</button>
+				  <button class="btn" onclick="filterSelection('Dissertation')"> Dissertation</button>
+				</div>
+
+				</div>
+				
+				
+				<div class="filterDiv Optimisation">
+				<div class="w3-card-4 w3-margin w3-white">
+					
+					
+					<div class="w3-container">
+                        <h3><b>Sol Tenebrae</b></h3>
+                        <h5>Blueprint optimisation<span class="w3-opacity"> April 10, 2019</span></h5>
+                    </div>
+
+                    <div class="w3-container">
+                        <p>As I discovered when investigating the CPU performance of the Sol Tenebrae project, the blueprint layout was very messy and extremely hard to understand what was occuring.
+						I have decided to fix this using re-route nodes and replacing whole sections which were redundant as will be explained.</p>
+						
+						<img src ="images/goodgod.png" width = "100%">
+						<p>^ For reference, this was the blueprint in question  ^</p>
+						
+						<img src ="images/reroute.png" width = "100%">
+						<p>First of all I tackled the left most part of the blueprint and organised the route nodes so that they all shared the same reroute node. Since the same variable was used for multiple nodes
+						a reroute node is the best option. If the different nodes were using different variables, this would not be an applicable solution and you would need to import the different variable for each node.</p>
+						
+						<img src ="images/redline.png" width = "100%">
+						<p> When I was dragging and rearranging the nodes, these 2 (red and grey)lines appeared to be connected to another node very far away from the 'get' source. This is unnecessary and causes the blueprint
+						to look more cluttered and thus harder to read.</p>
+						
+						<img src ="images/tidyLook.png" width = "100%">
+						<p> I resolved this by removing the red line and replacing it with a get variable 'IsDead' imported directly into the node required. The grey line was not connected to any nodes seen in this image and so I moved 
+						the get node for the grey line to the destination it was headed (can be seen in next images).</p>
+						
+						<img src ="images/variableBoolean.png" width = "100%">
+						<p> This was very strange... This node was checking several different boolean results and if any of them were true then some other nodes got executed. This is strange because the intrinsic nature of a boolean 
+						is binary, the value is either 0 or 1. Therefore there's no need to have multiple different routes checking each of them. However if you attempt to put all boolean routes into one route, they will cancel each other out?
+						This seems like a fault with Unreal itself rather than this blueprint, as a result I had to have them all reroute very messily into an OR node. Ideally, it would have been better and tidier to have them 
+						all share 1 route going towards a branch node.
+						</p> 
+						
+						<img src ="images/redundant sequence.png" width = "100%">
+						<p> Lastly I found this redundant sequence node, as well as many other tangled routes. I removed the sequence node and did some final touches to make the blueprint a bit more readable and the comprehensible.
+						Hopefully this means that in the future when people will go to make extensions to these blueprints or to further enhance them they will have an easier time understanding what is happening.</p>
+						
+						<img src ="images/TIDY.png" width = "100%">
+                        <div class="w3-row">
+                        </div>
+                    </div>
+					</div>
+				</div>
+				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+					
+					
 					<div class="w3-container">
                         <h3><b>Product owner</b></h3>
                         <h5>Portability<span class="w3-opacity"> April 03, 2019</span></h5>
@@ -41,8 +105,10 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
 				</div>
 		
+				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
 					<div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -105,13 +171,13 @@
 							
 
 							
-						
+						</div>
                         </div>
                     </div>
-				</div>
 				
 				
-            <div class="w3-col l8 s12">
+				
+				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
 					<div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -146,8 +212,10 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
 				</div>
 			
+				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -172,9 +240,11 @@
                         
                         <div class="w3-row">
                         </div>
+						</div>
                     </div>
                 </div>
 
+				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -190,8 +260,10 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
                 </div>
 			
+				<div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -207,8 +279,10 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
                 </div>
 
+				<div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>Product owner</b></h3>
@@ -225,8 +299,10 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
                 </div>
 
+				<div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <!-- source: https://academy.groupeonepoint.com/wp-content/uploads/2016/12/product-owner-2.png -->
                     <div class="w3-container">
@@ -243,10 +319,11 @@
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
                 </div>
 
 
-                <!-- Blog entry -->
+                <div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>An Autism Simulation</b></h3>
@@ -281,13 +358,39 @@
 
                         <p>
                             This is a relatively simple matter of optimisation, but still one I put my project through.
-                            Updates to come.
+                            The result was that there was no longer any stuttering between loading the different images and the process flowed smoothly.
                         </p>
                         <div class="w3-row">
                         </div>
                     </div>
+					</div>
+                </div>
+				
+				<div class="filterDiv Optimisation">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Optimisation</b></h3>
+                        <h5>Overview<span class="w3-opacity"> February 1st, 2018</span></h5>
+						</div>
+
+
+
+                    <div class="w3-container">
+                        <p>For Optimisation I have decided to do three things over the course of the next term.</p>
+						<p> Firstly, I will optimise part of my dissertation project. This is due to the fact that it can sometimes pause between updating images and I think this process could be sped up.<p>
+						<p> Secondly, I will detail the process with which I will be creating a Product Owner system in Django. I will specifically be explaining how django will help speed up the process of creating a webserver and creating an SQL database with ORMs.</p>
+						<p> Lastly, I will refactor my second year project's blueprints so that I can resolve the stutter that appears in the game after a prolonged session playing the game. I will detail the precise timings in ms that have been saved and how I have managed to achieve this process.
+						I will then also refactor the layout of the nodes in the blueprints so that they are more comprehensible.</p>
+                        <div class="w3-row">
+                        </div>
+						                    </div>
+
+                    </div>
                 </div>
 
+				
+				<div class="filterDiv Dissertation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>An Autism simulation</b></h3>
@@ -303,7 +406,9 @@
                         </div>
                     </div>
                 </div>
-
+				</div>
+				
+				<div class="filterDiv Dissertation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>An Autism Simulation</b></h3>
@@ -321,27 +426,69 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="w3-col l4">
+				</div>
 
-
-                <div class="w3-card w3-margin" id="contactlink">
-                    <div class="w3-container w3-padding">
-                        <h4><a href="mailto:james@thepittfamily.org"><b>Contact me!</b></a></h4>
-                        <i>This Website was made using assets from <a href="https://www.w3schools.com/">w3 Schools</a></i>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div><br>
-
-
+			<div class="w3-card w3-margin" id="contactlink">
+			<div class="w3-container w3-padding">
+			<h4><a href="mailto:james@thepittfamily.org"><b>Contact me!</b></a></h4>
+			<i>This Website was made using assets from <a href="https://www.w3schools.com/">w3 Schools</a></i>
+	</div>
+</div>
+		</div>
+		
     </div>
+	
+</div>
 
 
+	<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+<!-- This script was taken verbatim from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_elements -->
 
 
 </body>
 </html>
+
+
