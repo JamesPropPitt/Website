@@ -96,12 +96,11 @@
 					
 					<div class="w3-container">
                         <h3><b>Product owner</b></h3>
-                        <h5>Portability<span class="w3-opacity"> April 03, 2019</span></h5>
+                        <h5>Portability<span class="w3-opacity"> April 10, 2019</span></h5>
                     </div>
 
                     <div class="w3-container">
-                        <p>Another requirement of the Product Owner system was that it was required to run on mobile devices. Therefore I will be documenting the transition that was required to port the application
-						to being usable on a mobile phone with the potential for the development of a mobile phone app dedicated to the system </p>
+                        <p>
                         <div class="w3-row">
                         </div>
                     </div>
@@ -175,7 +174,33 @@
                         </div>
                     </div>
 				
-				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Bleach game<span class="w3-opacity"> April 04, 2018</span></h5>
+						</div>
+						<p> So I repeated the previous attempts at trying to port Sol tenebrae to mobile, by setting the project up in Unreal and optimising it in project settings for an Android device
+						and then changing the launch options to launch on my android device (for details please see my previous blog post on how I did this for Sol Tenebrae). When the program finally exported to my device, 
+						the game was able to run perfectly and Unreal had already provided controls for the mobile version (touch directional stick and tap for jumping). The only exception was that there was no button put in for attacking.</p>
+						
+						<p> To solve this, I created a widget blueprint in Unreal Engine and set the screen size to a Samsung Galaxy S4</p>
+						<img src ="images/S4.png" width = "100%">
+						
+						<p> I then created a new widget blue print and pasted in images from an xbox 360 controller.
+						
+						The place where I got the buttons from was http://www.clker.com/clipart-xbox-controller-buttons.html </p>
+						<img src ="images/S4.png" width = "100%">
+
+                    <div class="w3-container">
+                        <p></p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
 				
 				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
@@ -215,6 +240,30 @@
 					</div>
 				</div>
 			
+			<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Django<span class="w3-opacity"> March 24th, 2018</span></h5>
+						</div>
+						<p> I found and used a tool online called django_mobile (https://github.com/gregmuellegger/django-mobile) and followed the installation instructions for how to implement this 
+						into your own django project. These instructions were to install the module using 'pip install django_mobile' and add it to the project's settings.py file.
+						Django mobile detects if the user is on a mobile and changes the site accordingly.</p>
+						<img src ="images/redlines.png" width ="100%">
+						<p>I had to manually add 'loaders' as a sub-section of OPTIONS because it wasn't already in django. However, I discovered in django 1.8 they deprecated the TEMPLATE_LOADERS part of settings.py file
+						and I believe the django-mobile library still tries to refer to TEMPLATE_LOADERS which doesn't exist and causes an error. So I navigated to the conf.py file of Django-mobile and changed TEMPLATE_LOADERS
+						to TEMPLATES and got another error: SetFlavourMiddleware() takes no arguments. This is another issue with using modules which are out of date. I navigated to the django base.py file and changed shit </p>
+
+                    <div class="w3-container">
+                        <p></p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+			
 				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
@@ -243,14 +292,85 @@
 						</div>
                     </div>
                 </div>
+				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Django<span class="w3-opacity"> March 16th, 2018</span></h5>
+						</div>
+						<p> At the moment the django server is only being run locally as it is still being developed and therefore I cannot easily access it via mobile. 
+						However, I am able to see what the website would look like on a mobile device using Google Chrome's Developer tools. Pressing, F12 and toggle device toolbar and changed
+						the view port to a galaxy S5 (a random mobile chrome had pre-selected)
+						</p>
+						<img src ="images/mobiloviewus.png" width ="100%">
+						<p> The current view of the website is not ideal and will be changed. The process will be documented. </p>
 
+                    <div class="w3-container">
+                        <p></p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Sol Tenebrae<span class="w3-opacity"> March 8th, 2018</span></h5>
+						</div>
+						<p> When the project eventually compiled I was met with... a few errors. </p>
+						
+						<img src ="images/15068.png" width ="100%">
+						
+						<p> Sorting through and fixing 15,068 errors one by one is not practical and just a really bad idea. In addition to this issue, when I went to re-deploy the project I had discovered that it had deleted itself...
+							It also took my whole downloads folder with it.
+							In light of the recent errors I have decided to abandon this project and focus on the porting a django webserver to mobile platforms and porting a game I have been working on independently to mobile.
+							</p>
+
+
+                    <div class="w3-container">
+                        <p></p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability... and a bit of Optimisation!</b></h3>
+                        <h5>Sol Tenebrae<span class="w3-opacity"> February 28th, 2018</span></h5>
+						</div>
+
+
+
+                    <div class="w3-container">
+                        <p>The processing times were quite long which has lead to this process taking quite some time to get through, the initial compiling onto android took 2 hours (i7 processor, 16GB RAM) which is astounding
+						and frustrating. After digging around on the internet I actually found a program which someone made (https://github.com/AdrianJMartin/FixUnrealShaderPriority). Which looks like this when compiled </p>
+						<img src ="images/optimiseportability.png" width ="100%">
+						<p> The problem is that it is hard coded in Unreal for shaders to receive lower priority when compiling. This program I found speeds up this process by moving the priority up when requested (when compiling)</p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+				
 				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>Product owner</b></h3>
                         <h5>Optimisation<span class="w3-opacity"> March 13, 2019</span></h5>
                     </div>
-
+					
                     <div class="w3-container">
                         <p>
                             I tested developing the new Product Owner system in an environment like NodeJS initially and found it appropriate given the time scope and the complexity of the site to be made.
@@ -282,6 +402,29 @@
 					</div>
                 </div>
 
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Sol Tenebrae<span class="w3-opacity"> February 20th, 2018</span></h5>
+						</div>
+
+
+
+                    <div class="w3-container">
+                        <p>I ran into an issue with Unreal as it wouldn't detect my device. I realised I didn't have the Android SDK bundle downloaded and installed. This issue actually went much
+						deeper than initially thought. I had to reinstall Android Studio, reinstall Android SDK, and then run Androidworks in the extras folder that comes with UE4. </p>
+						<img src="images/sdk install.png" alt="Example of unoptimised" style="width:100%">
+						<p>Installing this resulted in Unreal Engine recognising my device and I was then able to launch the project on my android device.</p>
+						
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+				
 				<div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
@@ -322,6 +465,28 @@
 					</div>
                 </div>
 
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Sol Tenebrae<span class="w3-opacity"> February 12th, 2018</span></h5>
+						</div>
+
+
+
+                    <div class="w3-container">
+                        <p>To port this game to mobile the first thing I did was open the project settings in the unreal editor and change the target hardware to Mobile/Tablet and the graphics to scalable 3d or 2d.
+						Changing the graphics is important as mobile phones obviously have considerably less GPU power</p>
+						<img src="images/changeHardware.png" alt="Example of unoptimised" style="width:100%">
+						<p> Unreal also offer automagic buttons to configure the application to run on android and specifically Google Play. The Unreal documentation also recommended that I set the minimum and Target SDK to 14, which is
+						the ice cream sandwich version of the Android OS. They recommend this version as this is the version that, if targeted, enables your application to run on 100% of android devices.</p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
 
                 <div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
@@ -366,12 +531,35 @@
 					</div>
                 </div>
 				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+                    <div class="w3-container">
+	
+                        <h3><b>Portability</b></h3>
+                        <h5>Overview<span class="w3-opacity"> February 3rd, 2018</span></h5>
+						</div>
+
+
+
+                    <div class="w3-container">
+                        <p>For Portability I intend to port 2 applications to mobile.</p>
+						<p> Firstly, the current Django project I am working on requires the final product to be usable on mobile devices. Because of this I will have a mobile-friendly version of the website present.<p>
+						<p> Secondly, I will port my second year game Sol Tenebrae to mobile. I will detail how I achieve each step along the way.</p>
+						<p>The program I'm using to run the app on mobile is Android Studio. 
+						Note, the initial portability task will detail the port of these programs from PC to Android and not iOS. iOS will be a stretch goal.</p>
+                        <div class="w3-row">
+                        </div>
+					</div>
+
+                    </div>
+                </div>
+				
 				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
 	
                         <h3><b>Optimisation</b></h3>
-                        <h5>Overview<span class="w3-opacity"> February 1st, 2018</span></h5>
+                        <h5>Overview<span class="w3-opacity"> February 2nd, 2018</span></h5>
 						</div>
 
 
@@ -394,7 +582,7 @@
                 <div class="w3-card-4 w3-margin w3-white">
                     <div class="w3-container">
                         <h3><b>An Autism simulation</b></h3>
-                        <h5>Change of plan<span class="w3-opacity"> February 2nd, 2019</span></h5>
+                        <h5>Change of plan<span class="w3-opacity"> February 1st, 2019</span></h5>
                     </div>
 
                     <div class="w3-container">
