@@ -43,6 +43,47 @@
 
 				</div>
 				
+				<div class="filterDiv Portability">
+				<div class="w3-card-4 w3-margin w3-white">
+					
+					
+					<div class="w3-container">
+                        <h3><b>Unreal</b></h3>
+                        <h5>Portability<span class="w3-opacity"> April 25, 2019</span></h5>
+                    </div><p>On the topic of porting the rolling blueprint from PC to mobile I first added the tilt control to the axis mappings</p>
+					
+					<img src ="images/axismap.PNG" width = "100%">
+					
+					<p> Next, I located the current movement on the ball for PC controls and tried the simple and straight forward approach of replacing the PC input method with the tilt input method</p>
+					
+					<img src ="images/copied.PNG" width = "100%">
+					<p> This was the blueprint chunk which I copied and pasted in and changed the initial node to a tilt event instead of a moveforward axis. I forgot I also needed to change the horizontal rolling
+						So I changed the blueprint layout to add a sequence node.</p>
+						
+					<img src ="images/copied2.PNG" width = "100%">
+					
+					<p> This made it roll in weird directions, so I made the following change to the blueprint nodes and tried again </p>
+					
+					<img src ="images/copied3.PNG" width = "100%">
+					<p> As I should have probably predicted, this meant the ball could only roll in a diagonal path. </p>
+					
+					<p> After an hour or so of messing about with the different values of the tilt value, I discovered that the float given from the tilt event node only returns a single float and 
+					is therefore not suitable for vector-based movement. I found an alternative to use called get input motion state which would read the three vector values of motion movement</p>
+					
+					<img src ="images/tiltdone.PNG" width = "100%">
+					
+					<p> Astute observers would note a few things: Firstly, that the movement for up/down adds 1.5 to the tilt value before multiplying it by the torque. This is because a vertical tilt value of 0 is when the phone is face
+					down, which isn't generally how people would hold a phone. 1.5 is a 90 degree rotation and is more comfortable to use as the screen is now facing the player.
+					Secondly, The original vector values don't match up with the targeted torque vectors (example, the X value of the motion state eventually feeds into the Y value of the ball).
+					This is because the game is played landscape and so when you tilt forward(Y), you're actually tilting the phone's gyroscope to the right(X). 
+					I had successfully ported the tilting template to mobile.</p>
+                    <div class="w3-container">
+                        <p>
+                        <div class="w3-row">
+                        </div>
+                    </div>
+					</div>
+				</div>
 				
 				<div class="filterDiv Optimisation">
 				<div class="w3-card-4 w3-margin w3-white">
@@ -57,33 +98,33 @@
                         <p>As I discovered when investigating the CPU performance of the Sol Tenebrae project, the blueprint layout was very messy and extremely hard to understand what was occuring.
 						I have decided to fix this using re-route nodes and replacing whole sections which were redundant as will be explained.</p>
 						
-						<img src ="images/goodgod.png" width = "100%">
+						<img src ="images/goodgod.PNG" width = "100%">
 						<p>^ For reference, this was the blueprint in question  ^</p>
 						
-						<img src ="images/reroute.png" width = "100%">
+						<img src ="images/reroute.PNG" width = "100%">
 						<p>First of all I tackled the left most part of the blueprint and organised the route nodes so that they all shared the same reroute node. Since the same variable was used for multiple nodes
 						a reroute node is the best option. If the different nodes were using different variables, this would not be an applicable solution and you would need to import the different variable for each node.</p>
 						
-						<img src ="images/redline.png" width = "100%">
+						<img src ="images/redline.PNG" width = "100%">
 						<p> When I was dragging and rearranging the nodes, these 2 (red and grey)lines appeared to be connected to another node very far away from the 'get' source. This is unnecessary and causes the blueprint
 						to look more cluttered and thus harder to read.</p>
 						
-						<img src ="images/tidyLook.png" width = "100%">
+						<img src ="images/tidyLook.PNG" width = "100%">
 						<p> I resolved this by removing the red line and replacing it with a get variable 'IsDead' imported directly into the node required. The grey line was not connected to any nodes seen in this image and so I moved 
 						the get node for the grey line to the destination it was headed (can be seen in next images).</p>
 						
-						<img src ="images/variableBoolean.png" width = "100%">
+						<img src ="images/variableBoolean.PNG" width = "100%">
 						<p> This was very strange... This node was checking several different boolean results and if any of them were true then some other nodes got executed. This is strange because the intrinsic nature of a boolean 
 						is binary, the value is either 0 or 1. Therefore there's no need to have multiple different routes checking each of them. However if you attempt to put all boolean routes into one route, they will cancel each other out?
 						This seems like a fault with Unreal itself rather than this blueprint, as a result I had to have them all reroute very messily into an OR node. Ideally, it would have been better and tidier to have them 
 						all share 1 route going towards a branch node.
 						</p> 
 						
-						<img src ="images/redundant sequence.png" width = "100%">
+						<img src ="images/redundant sequence.PNG" width = "100%">
 						<p> Lastly I found this redundant sequence node, as well as many other tangled routes. I removed the sequence node and did some final touches to make the blueprint a bit more readable and the comprehensible.
 						Hopefully this means that in the future when people will go to make extensions to these blueprints or to further enhance them they will have an easier time understanding what is happening.</p>
 						
-						<img src ="images/TIDY.png" width = "100%">
+						<img src ="images/TIDY.PNG" width = "100%">
                         <div class="w3-row">
                         </div>
                     </div>
@@ -95,9 +136,10 @@
 					
 					
 					<div class="w3-container">
-                        <h3><b>Product owner</b></h3>
+                        <h3><b>Unreal</b></h3>
                         <h5>Portability<span class="w3-opacity"> April 10, 2019</span></h5>
-                    </div>
+                    </div><p>I wanted to test out the tilt function of a mobile device, so I created a new blueprint project using default 'rolling' template. As the goal of this was not to 
+					implement a nice looking game, I used the default map that comes with the rolling template. My only goal was to see how I could transfer the arrow keys to the tilt function on android.</p>
 
                     <div class="w3-container">
                         <p>
@@ -126,7 +168,7 @@
 						
 						<p> This is obviously not ideal. The tool I used for looking specifically at game thread performance was acquiring a profile on the game thread performance by entering 'stat startfile' into the command console.
 						Then opening the profile in the session frontend tab and routing around looking for the culprit I discovered this 'majestic' tree...</p>
-						<img src ="images/culprit.png" width = "100%">
+						<img src ="images/culprit.PNG" width = "100%">
 						
 						<p> So upon investigating the spider controller blueprint I found something that God must have turned his back on. The actual content of the blueprints and what they say is irrelevant, the important thing to 
 							take away from this is that it is ALL run on a tick event.
@@ -134,7 +176,7 @@
 							Event Tick is great for small projects and small algorithms as it's a quick and easy logic unit for maintaining a cycle, but in bigger games like this one it can grind the frame rate to an effective halt.
 							I tried a few solutions to this.</p>
 							
-							<img src ="images/goodgod.png" width = "100%">
+							<img src ="images/goodgod.PNG" width = "100%">
 							
 							
 							<p>Straight off the bat I got rid of the event tick and replaced it with the node 'Onperception' so I essentially made the spider controller blueprint only update if the they could see the player.
@@ -150,9 +192,9 @@
 							set interval from the last delta tick.</p>
 							
 							
-							<img src ="images/before.png" width = "100%">
+							<img src ="images/before.PNG" width = "100%">
 							<p><b>Before</b></p>
-							<img src ="images/after.png" width = "100%">
+							<img src ="images/after.PNG" width = "100%">
 							<p><b>After</b></p>
 							
 							<p>To explain:
@@ -186,12 +228,12 @@
 						the game was able to run perfectly and Unreal had already provided controls for the mobile version (touch directional stick and tap for jumping). The only exception was that there was no button put in for attacking.</p>
 						
 						<p> To solve this, I created a widget blueprint in Unreal Engine and set the screen size to a Samsung Galaxy S4</p>
-						<img src ="images/S4.png" width = "100%">
+						<img src ="images/S4.PNG" width = "100%">
 						
 						<p> I then created a new widget blue print and pasted in images from an xbox 360 controller.
 						
 						The place where I got the buttons from was http://www.clker.com/clipart-xbox-controller-buttons.html </p>
-						<img src ="images/S4.png" width = "100%">
+						<img src ="images/S4.PNG" width = "100%">
 
                     <div class="w3-container">
                         <p></p>
@@ -213,27 +255,27 @@
                         <p>
                             <p>By using an ORM (Object relational mappers) I was able to type in the values for a virtual database I wanted to create in the models.py section of my Django directory.
 							I entered the desired values and the requirements for each command that needed to be executed along with them to the URLS.py file of the program.</p>
-							<img src ="images/ss03.png" width = "100%">
+							<img src ="images/ss03.PNG" width = "100%">
 							
 							<p>Opening a command line and executing the command 'python manage.py sqlitemigrate userPosts 0001' it converted all the values I had put into the python file into an SQL framework.
 							This not only means by using this I did not need to have extensive knowledge on SQL but it has saved me a lot of time in production. </p>
 							
-							<img src ="images/ss01.png" width = "100%">
+							<img src ="images/ss01.PNG" width = "100%">
 							
 							<p>By then following this up with the command: 'python manage.py migrate' this updates the information in the newly created Database. This is useful because this is a quick and simple way of
 							interacting and making changes to the SQL database without actually having to use any SQL yourself. You simply put the data in and the migrations handle the conversions into an SQL database.</p>
 							
-							<img src ="images/ss02.png" width = "100%">
+							<img src ="images/ss02.PNG" width = "100%">
 							
 							<p>This created a file called '0001_initial.py' under the djangoPO/userPosts/migrations directory which populated it with the following code:</p>
 							
-							<img src ="images/ss04.png" width = "100%">
+							<img src ="images/ss04.PNG" width = "100%">
 							
 							<p> The database has now been created with the columns: Title, Content, Date, Author. Each their own appropriate restrictions (i.e title cannot be longer than 100 chars). The database is also
 							now easily accessible using a Python django shell command which one can enter using the python manage.py shell command. Once in this shell you can query the database to recover any information 
 							that has been entered. Here's an early example of querying the current user list of the database. The result is 2 users which were created as test users 'Admin' and 'User'.</p>
 							
-							<img src ="images/ss05.png" width = "100%">
+							<img src ="images/ss05.PNG" width = "100%">
                         <div class="w3-row">
                         </div>
                     </div>
@@ -250,10 +292,10 @@
 						<p> I found and used a tool online called django_mobile (https://github.com/gregmuellegger/django-mobile) and followed the installation instructions for how to implement this 
 						into your own django project. These instructions were to install the module using 'pip install django_mobile' and add it to the project's settings.py file.
 						Django mobile detects if the user is on a mobile and changes the site accordingly.</p>
-						<img src ="images/redlines.png" width ="100%">
+						<img src ="images/redlines.PNG" width ="100%">
 						<p>I had to manually add 'loaders' as a sub-section of OPTIONS because it wasn't already in django. However, I discovered in django 1.8 they deprecated the TEMPLATE_LOADERS part of settings.py file
 						and I believe the django-mobile library still tries to refer to TEMPLATE_LOADERS which doesn't exist and causes an error. So I navigated to the conf.py file of Django-mobile and changed TEMPLATE_LOADERS
-						to TEMPLATES and got another error: SetFlavourMiddleware() takes no arguments. This is another issue with using modules which are out of date. I navigated to the django base.py file and changed shit </p>
+						to TEMPLATES and got another error: SetFlavourMiddleware() takes no arguments. This is another issue with using modules which are out of date. I eventually cut my losses when I realised that the current django_mobile module does not support the current version of django. </p>
 
                     <div class="w3-container">
                         <p></p>
@@ -278,13 +320,13 @@
 							Even though this was done at the start of the project development, I still feel it was an important move to make, optimisation wise, as it will save a lot of headaches further down the line.
 							Anyway: </p>
 							
-							<img src ="images/homepageBlogexample.png" width = "100%">
+							<img src ="images/homepageBlogexample.PNG" width = "100%">
 							<p>This was identical to the about page at the time of writing this, with the word about replaced with home in appropriate areas.
 							I created another template to be inhereted by these two templates, and every other template in the future, with this code:</p>
-							<img src ="images/basepageBlogexample.png" width ="100%"
+							<img src ="images/basepageBlogexample.PNG" width ="100%"
 							
 							<p>Which resulted in the other 2 pages being reduced to a meagre amount of code:</p>
-							<img src ="images/postworkBlogexample.png" width ="100%"
+							<img src ="images/postworkBlogexample.PNG" width ="100%"
 							<p> This also allows me to edit all pages in the future by simply editing 1 parent page, this speeds up the addition of future additions to the website as well as ensuring it remains tidy.
                         
                         <div class="w3-row">
@@ -304,8 +346,8 @@
 						However, I am able to see what the website would look like on a mobile device using Google Chrome's Developer tools. Pressing, F12 and toggle device toolbar and changed
 						the view port to a galaxy S5 (a random mobile chrome had pre-selected)
 						</p>
-						<img src ="images/mobiloviewus.png" width ="100%">
-						<p> The current view of the website is not ideal and will be changed. The process will be documented. </p>
+						<img src ="images/mobiloviewus.PNG" width ="100%">
+						<p> The current view of the website is adequate. However, improvements on how to make it more user-friendly will be documented.</p>
 
                     <div class="w3-container">
                         <p></p>
@@ -325,7 +367,7 @@
 						</div>
 						<p> When the project eventually compiled I was met with... a few errors. </p>
 						
-						<img src ="images/15068.png" width ="100%">
+						<img src ="images/15068.PNG" width ="100%">
 						
 						<p> Sorting through and fixing 15,068 errors one by one is not practical and just a really bad idea. In addition to this issue, when I went to re-deploy the project I had discovered that it had deleted itself...
 							It also took my whole downloads folder with it.
@@ -355,7 +397,7 @@
                     <div class="w3-container">
                         <p>The processing times were quite long which has lead to this process taking quite some time to get through, the initial compiling onto android took 2 hours (i7 processor, 16GB RAM) which is astounding
 						and frustrating. After digging around on the internet I actually found a program which someone made (https://github.com/AdrianJMartin/FixUnrealShaderPriority). Which looks like this when compiled </p>
-						<img src ="images/optimiseportability.png" width ="100%">
+						<img src ="images/optimiseportability.PNG" width ="100%">
 						<p> The problem is that it is hard coded in Unreal for shaders to receive lower priority when compiling. This program I found speeds up this process by moving the priority up when requested (when compiling)</p>
                         <div class="w3-row">
                         </div>
@@ -415,7 +457,7 @@
                     <div class="w3-container">
                         <p>I ran into an issue with Unreal as it wouldn't detect my device. I realised I didn't have the Android SDK bundle downloaded and installed. This issue actually went much
 						deeper than initially thought. I had to reinstall Android Studio, reinstall Android SDK, and then run Androidworks in the extras folder that comes with UE4. </p>
-						<img src="images/sdk install.png" alt="Example of unoptimised" style="width:100%">
+						<img src="images/sdk install.PNG" alt="Example of unoptimised" style="width:100%">
 						<p>Installing this resulted in Unreal Engine recognising my device and I was then able to launch the project on my android device.</p>
 						
                         <div class="w3-row">
@@ -447,7 +489,7 @@
 
 				<div class="filterDiv Optimisation">
                 <div class="w3-card-4 w3-margin w3-white">
-                    <!-- source: https://academy.groupeonepoint.com/wp-content/uploads/2016/12/product-owner-2.png -->
+                    <!-- source: https://academy.groupeonepoint.com/wp-content/uploads/2016/12/product-owner-2.PNG -->
                     <div class="w3-container">
                         <h3><b>The Product Owner system</b></h3>
                         <h5>Introduction<span class="w3-opacity"> February 20th, 2019</span></h5>
@@ -478,7 +520,7 @@
                     <div class="w3-container">
                         <p>To port this game to mobile the first thing I did was open the project settings in the unreal editor and change the target hardware to Mobile/Tablet and the graphics to scalable 3d or 2d.
 						Changing the graphics is important as mobile phones obviously have considerably less GPU power</p>
-						<img src="images/changeHardware.png" alt="Example of unoptimised" style="width:100%">
+						<img src="images/changeHardware.PNG" alt="Example of unoptimised" style="width:100%">
 						<p> Unreal also offer automagic buttons to configure the application to run on android and specifically Google Play. The Unreal documentation also recommended that I set the minimum and Target SDK to 14, which is
 						the ice cream sandwich version of the Android OS. They recommend this version as this is the version that, if targeted, enables your application to run on 100% of android devices.</p>
                         <div class="w3-row">
@@ -508,18 +550,18 @@
                             This code is responsible for selecting the emotion.
                         </p>
 
-                        <img src="images/SS1.png" alt="Example of unoptimised" style="width:50%">
+                        <img src="images/SS1.PNG" alt="Example of unoptimised" style="width:50%">
 
                         <p><br>This was the code which fired everytime a button was pressed, this was cumbersome as the program was required to generate a random number everytime a button was pressed.</br></p>
 
-                        <img src="images/SS2.png" alt="Example of unoptimised" style="width:50%">
+                        <img src="images/SS2.PNG" alt="Example of unoptimised" style="width:50%">
 
                         <p>
                             With this new function in the starter phase of the code “changeEmotionAll”, this runs through the code and assigns an emotion to every decision taken by the player.
                             This cuts down the possible number of emotions from infinite to 28.
                         </p>
 
-                        <img src="images/SS4.png" alt="Example of unoptimised" style="width:50%">
+                        <img src="images/SS4.PNG" alt="Example of unoptimised" style="width:50%">
 
                         <p>
                             This is a relatively simple matter of optimisation, but still one I put my project through.
